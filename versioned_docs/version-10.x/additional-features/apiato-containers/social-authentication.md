@@ -94,8 +94,29 @@ AUTH_GOOGLE_CLIENT_ID=
 AUTH_GOOGLE_CLIENT_SECRET=
 AUTH_GOOGLE_CLIENT_REDIRECT=
 ```
+3) Same as `.env` you need to setup supported provider in your `config\services.php`
+```
+ 'google' => [
+        'client_id' => env('AUTH_GOOGLE_CLIENT_ID'),
+        'client_secret' => env('AUTH_GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('AUTH_GOOGLE_CLIENT_REDIRECT'),
+    ],
 
-3) Make a request from your client to get the `oauth` info.  
+    'facebook' => [
+        'client_id' => env('AUTH_FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('AUTH_FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('AUTH_FACEBOOK_CLIENT_REDIRECT'),
+    ],
+
+    'twitter' => [
+        'client_id' => env('AUTH_TWITTER_CLIENT_ID'),
+        'client_secret' => env('AUTH_TWITTER_CLIENT_SECRET'),
+        'redirect' => env('AUTH_TWITTER_CLIENT_REDIRECT'),
+    ],
+
+```
+
+4) Make a request from your client to get the `oauth` info.  
    **Each Social provider returns different response and keys**
 
 Example Twitter Response:
@@ -120,11 +141,11 @@ Example Twitter Response:
 This step should be done by your client App, which could be a Web, Mobile or other kind of client Apps.  
 :::
 
-4) Use `auth/{provider}` route and the `oauth` info to make a call from your server to the Social Provider in order to
+5) Use `auth/{provider}` route and the `oauth` info to make a call from your server to the Social Provider in order to
    get the User info. For more details about the `auth/{provider}` route parameters checkout the generated documentation or
    visit `app/Containers/Vendor/Socialauth/UI/API/Routes/AuthenticateAll.v1.private.php`.
 
-5) The endpoint above should return the User and his Personal Access Token.
+6) The endpoint above should return the User and his Personal Access Token.
 
 Example Google Response:
 
